@@ -1,15 +1,18 @@
 🛡️ AI‑Native Money Movement Decision Operating System
 An end‑to‑end AI‑native decision system designed to rebuild money‑movement workflows from first principles. The system integrates deterministic rules, cognitive risk scoring, guardrails, fallback heuristics, continuity tracking, and full explainability — all wrapped in a modular FastAPI backend and a multi‑tab Streamlit UI.
 
-This project was built as a real system, not a demo. It follows modern principles of AI-native architecture, operational resilience, and transparent decision‑making.
+This project was built as a real system. It follows modern principles of AI-native architecture, operational resilience, and transparent decision‑making.
+
 
 🚀 System Architecture Overview
+
 1. Decision Intake Layer
 Normalizes transaction context.
 
 Triggers the orchestration pipeline.
 
 Stores transaction history for continuity and support.
+
 
 2. Decision Orchestrator
 Coordinates the full decision pipeline:
@@ -36,12 +39,14 @@ reasoning_log
 
 anomaly_flags
 
+
 3. Status Engine
 Maintains the lifecycle of each transaction.
 
 Enforces valid state transitions (Approved, Held, Blocked).
 
 Logs timestamps and decision metadata.
+
 
 4. Continuity Engine
 Tracks:
@@ -58,6 +63,7 @@ Operational anomalies
 
 Provides a real‑time view of system health.
 
+
 5. Transparency Layer
 Generates user‑friendly explanations that combine:
 
@@ -70,6 +76,7 @@ anomaly flags
 historical context
 
 Designed for both clients and support teams.
+
 
 6. Streamlit UI
 A multi‑tab operational console:
@@ -90,7 +97,9 @@ Operational Context (Support)
 
 Operating Model
 
+
 🧠 Decision Pipeline
+
 1. Hard Rules
 Deterministic checks:
 
@@ -103,6 +112,7 @@ transaction caps
 device/IP mismatch
 
 destination risk
+
 
 2. Cognitive Risk Engine
 LLM produces an initial risk score.
@@ -119,6 +129,7 @@ amount_spike
 
 device_ip_mismatch
 
+
 3. Guardrails
 Validate:
 
@@ -130,6 +141,7 @@ schema compliance
 
 If guardrails fail → fallback mode.
 
+
 4. Fallback Engine
 Deterministic risk scoring when:
 
@@ -139,6 +151,7 @@ LLM output is invalid
 
 guardrails fail
 
+
 5. Decision Mapping
 green → approve
 
@@ -146,11 +159,14 @@ yellow → hold
 
 red → block
 
+
 6. Status Engine
 Applies the operational state.
 
+
 7. Continuity Engine
 Logs every step for auditability.
+
 
 🧪 Tech Stack
 FastAPI — backend services
@@ -167,10 +183,13 @@ Python 3.11
 
 Modular architecture with clear separation of concerns
 
+
 📦 Running the Project
+
 Backend
 bash
 uvicorn app.main:app --reload --port 8000
+
 UI
 bash
 streamlit run UI/app.py
