@@ -193,3 +193,40 @@ uvicorn app.main:app --reload --port 8000
 UI
 bash
 streamlit run UI/app.py
+
+flowchart TD
+
+    %% Intake
+    A[User / Client App] --> B[Decision Intake Layer<br/>Normalize + Validate Payload]
+
+    %% Orchestrator
+    B --> C[Decision Orchestrator]
+
+    %% Hard Rules
+    C --> D[Hard Rules Engine<br/>Deterministic Checks]
+    D -->|Fail| Fallback1[Fallback Engine<br/>Deterministic Risk Score]
+    D -->|Pass| E[Cognitive Risk Engine<br/>LLM + Heuristics]
+
+    %% Guardrails
+    E --> G[Guardrails Validation]
+    G -->|Fail| Fallback2[Fallback Engine<br/>Guardrail Failure]
+    G -->|Pass| H[Risk Score Mapping<br/>Green / Yellow / Red]
+
+    %% Status Engine
+    H --> I[Status Engine<br/>State Transitions]
+
+    %% Continuity Engine
+    Fallback1 --> J[Continuity Engine<br/>Failure / Degradation Logs]
+    Fallback2 --> J
+    E --> J
+    G --> J
+    I --> J
+
+    %% Transparency Layer
+    I --> K[Transparency Layer<br/>User-Friendly Explanation]
+
+    %% UI
+    K --> L[Streamlit UI<br/>Decision Engine Tab]
+    J --> M[Streamlit UI<br/>Continuity & Failure Modes Tab]
+    I --> N[Streamlit UI<br/>Audit Trail & History Tab]
+
